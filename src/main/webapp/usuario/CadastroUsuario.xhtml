@@ -1,0 +1,46 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui">
+	
+	<ui:define name="titulo">Novo usuário</ui:define>
+
+	<ui:define name="corpo">
+		<h1>Novo usuário</h1>
+
+		<p:toolbar style="margin-top: 20px">
+			<p:toolbarGroup>
+				<p:button value="Novo" outcome="/usuario/CadastroUsuario" />
+				
+				<span class="ui-separator">
+	                <span class="ui-icon ui-icon-grip-dotted-vertical" />
+	            </span>
+				
+				<p:commandButton value="Salvar" id="botaoSalvar" />
+			</p:toolbarGroup>
+			
+			<p:toolbarGroup align="right">
+				<p:button value="Pesquisa" />
+			</p:toolbarGroup>
+		</p:toolbar>
+		
+		<p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
+				columnClasses="rotulo, campo">
+				
+			<p:outputLabel value="Nome" for="nome" />
+			<p:inputText id="nome" size="50" maxlength="50" />
+			
+			<p:outputLabel value="E-mail" for="email" />
+			<p:inputText id="email" size="50" maxlength="50" />
+			
+			<p:outputLabel value="Senha" for="senha" />
+			<p:password id="senha" size="25" maxlength="25" feedback="true" weakLabel="Fraca"
+				goodLabel="Boa" strongLabel="Forte" promptLabel="Por favor, insira uma senha!" />
+						
+		</p:panelGrid>		
+	</ui:define>
+
+</ui:composition>

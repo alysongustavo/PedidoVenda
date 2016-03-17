@@ -13,13 +13,20 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
-	<!-- PrimeFaces (biblioteca de componentes) -->
 	<dependencies>
+		<!-- PrimeFaces (biblioteca de componentes) -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>5.3</version>
 			<scope>compile</scope>
+		</dependency>
+		
+		<!-- PrimeFaces (all themes) -->
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>all-themes</artifactId>
+			<version>1.0.10</version>
 		</dependency>
 		
 		<!-- Mojarra (implementação do JSF 2.2) -->

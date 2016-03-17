@@ -14,6 +14,11 @@
 		<p:toolbar style="margin-top: 20px">
 			<p:toolbarGroup>
 				<p:button value="Novo" outcome="/produtos/CadastroProduto" />
+				
+				<span class="ui-separator">
+	                <span class="ui-icon ui-icon-grip-dotted-vertical" />
+	            </span>
+				
 				<p:commandButton value="Salvar" id="botaoSalvar" />
 			</p:toolbarGroup>
 			
@@ -42,7 +47,7 @@
 			</p:selectOneMenu>
 			
 			<p:outputLabel value="Valor unitário" for="valorUnitario" />
-			<p:inputText id="valorUnitario" size="10" maxlength="10" />
+			<p:inputText id="valorUnitario" size="10" maxlength="10" styleClass="moeda" />
 			
 			<p:outputLabel value="Estoque" for="estoque" />
 			<p:inputText id="estoque" size="10" maxlength="4" />

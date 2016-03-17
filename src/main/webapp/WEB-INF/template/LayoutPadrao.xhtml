@@ -8,10 +8,11 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title><ui:insert name="titulo">Sistema de Padidos de Venda</ui:insert></title>
 		<h:outputStylesheet library="css" name="sistema.css" />
+		<h:outputScript library="js" name="jquery.maskMoney.js" />
 	</h:head>
 
 	<h:body>
-		<p:ajaxStatus styleClass="ajax-status">
+		<p:ajaxStatus styleClass="ajax-status" onsuccess="configurarMoeda()">
 			<f:facet name="start">
 				<h:graphicImage library="images" name="loading11.gif" style="width: 35px; height: 35px" />
 			</f:facet>
@@ -36,7 +37,18 @@
 		<p:separator style="margin-top: 20px" />
 	
 		<footer>
-			© 2016 Sistema de pedidos de venda - Desenvolvido por Gilson Silva
+			© 2016 Sistema de pedidos de venda - Desenvolvido por Gilson Silva -
+			<a href="https://github.com/gilsonsilvati" target="_blank">GitHub</a>
 		</footer>
+		
+		<script>
+			function configurarMoeda() {
+				$(".moeda").maskMoney({ decimal: ",", thousands: ".", allowZero: true });
+			}
+
+			$(function(){
+				configurarMoeda();
+			});
+		</script>
 	</h:body>
 </html>
