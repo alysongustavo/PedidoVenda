@@ -1,0 +1,74 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Cadastro Contrato de Treinamentos</ui:define>
+
+	<ui:define name="corpo">
+		<h:form>
+			<h1>Cadastro Contrato de Treinamentos</h1>
+
+			<p:tabView dynamic="true" cache="false" style="margin-top: 20px">
+				<p:tab title="Dados principais">
+					<h:panelGrid columns="2" cellpadding="4">
+						<p:outputLabel value="Razão Social" for="razaoSocial" />
+						<p:inputText id="razaoSocial" size="40" />
+
+						<p:outputLabel value="CNPJ" for="cnpj" />
+						<p:inputMask id="cnpj" mask="99.999.999/9999-99" />
+
+						<p:outputLabel value="Cidade do contrato" for="cidadeContrato" />
+						<p:inputText id="cidadeContrato" />
+
+						<p:outputLabel value="Modalidade" for="modalidade" />
+						<p:selectOneRadio id="modalidade" styleClass="radio">
+							<f:selectItem itemLabel="EAD" />
+							<f:selectItem itemLabel="Presencial" />
+						</p:selectOneRadio>
+					</h:panelGrid>
+				</p:tab>
+
+				<p:tab title="Contrato">
+					<h:panelGrid columns="2" cellpadding="4">
+						<p:outputLabel value="Data do contrato" for="dataContrato" />
+						<p:calendar id="dataContrato" pattern="dd/MM/yyyy" locale="pt_BR" />
+
+						<p:outputLabel value="Valor do contrato" for="valorContrato" />
+						<p:inputText id="valorContrato" styleClass="moeda" />
+
+						<p:outputLabel value="Método de pagamento" for="metodoPagamento" />
+						<p:selectOneMenu id="metodoPagamento">
+							<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+						</p:selectOneMenu>
+
+						<p:outputLabel value="Forma de pagamento" for="formaPagamento" />
+						<p:selectOneMenu id="formaPagamento">
+							<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+						</p:selectOneMenu>
+					</h:panelGrid>
+				</p:tab>
+
+				<p:tab title="Cursos">
+					<h:panelGrid columns="2" cellpadding="4">
+						<p:outputLabel value="Cursos Contratados" for="cursos" />
+						<p:outputLabel />
+						
+						<p:selectManyCheckbox id="cursos" layout="pageDirection">
+							<f:selectItem itemLabel="Fundamentos Java e Orientação a Objetos" />
+							<f:selectItem itemLabel="Desenvolvimento Web com JSF 2" />
+							<f:selectItem itemLabel="Persistência de Dados com JPA 2 e Hibernate" />
+							<f:selectItem itemLabel="Gerenciamento Ágil de Projetos com Scrum" />
+						</p:selectManyCheckbox>
+					</h:panelGrid>
+				</p:tab>
+			</p:tabView>
+
+			<br />
+			<p:commandButton value="Cadastrar" icon="fa fa-floppy-o" />
+		</h:form>
+	</ui:define>
+
+</ui:composition>
