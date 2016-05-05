@@ -7,7 +7,7 @@ import br.com.pedidovenda.model.Cliente;
 import br.com.pedidovenda.model.Endereco;
 import br.com.pedidovenda.model.TipoPessoa;
 
-public class Teste {
+public class TesteCliente {
 	
 	public static void main(String[] args) {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("PedidoPU");
