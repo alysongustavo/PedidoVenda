@@ -12,8 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "produto")
@@ -38,6 +43,8 @@ public class Produto implements Serializable {
 		this.id = id;
 	}
 
+	@NotBlank
+	@Size(max = 80)
 	@Column(nullable = false, length = 80)
 	public String getNome() {
 		return nome;
@@ -46,6 +53,7 @@ public class Produto implements Serializable {
 		this.nome = nome;
 	}
 
+	@NotBlank
 	@Column(nullable = false, length = 20, unique = true)
 	public String getSku() {
 		return sku;
@@ -54,6 +62,7 @@ public class Produto implements Serializable {
 		this.sku = sku == null ? null : sku.toUpperCase();
 	}
 
+	@NotNull
 	@Column(name="valor_unitario", nullable = false, precision = 10, scale = 2)
 	public BigDecimal getValorUnitario() {
 		return valorUnitario;
@@ -62,6 +71,7 @@ public class Produto implements Serializable {
 		this.valorUnitario = valorUnitario;
 	}
 
+	@NotNull @Min(0) @Max(9999)
 	@Column(name="quantidade_estoque", nullable = false, length = 5)
 	public Integer getQuantidadeEstoque() {
 		return quantidadeEstoque;
@@ -70,6 +80,7 @@ public class Produto implements Serializable {
 		this.quantidadeEstoque = quantidadeEstoque;
 	}
 
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "categoria_id", nullable = false)
 	public Categoria getCategoria() {
