@@ -5,6 +5,8 @@
 	version="2.2">
 
 	<application>
+		<message-bundle>br.com.pedidovenda.Messages</message-bundle>
+	
 		<locale-config>
 			<default-locale>pt_BR</default-locale>
 		</locale-config>

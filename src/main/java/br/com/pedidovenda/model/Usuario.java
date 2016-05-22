@@ -15,8 +15,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "usuario")
@@ -40,6 +43,8 @@ public class Usuario implements Serializable {
 		this.id = id;
 	}
 
+	@NotBlank
+	@Size(max = 100)
 	@Column(nullable = false, length = 100)
 	public String getNome() {
 		return nome;
@@ -48,6 +53,9 @@ public class Usuario implements Serializable {
 		this.nome = nome;
 	}
 
+	@Email
+	@NotBlank
+	@Size(max = 100)
 	@Column(nullable = false, length = 100, unique = true)
 	public String getEmail() {
 		return email;
@@ -56,6 +64,8 @@ public class Usuario implements Serializable {
 		this.email = email;
 	}
 
+	@NotBlank
+	@Size(max = 20)
 	@Column(nullable = false, length = 20)
 	public String getSenha() {
 		return senha;

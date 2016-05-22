@@ -10,6 +10,8 @@
 	<ui:define name="corpo">
 		<h:form>
 			<h1>Novo usuário</h1>
+			
+			<p:messages autoUpdate="true" closable="true" />
 	
 			<p:toolbar style="margin-top: 20px">
 				<p:toolbarGroup>
@@ -19,7 +21,8 @@
 		                <span class="ui-icon ui-icon-grip-dotted-vertical" />
 		            </span>
 					
-					<p:commandButton value="Salvar" id="botaoSalvar" icon="fa fa-floppy-o" />
+					<p:commandButton value="Salvar" id="botaoSalvar" icon="fa fa-floppy-o"
+						action="#{cadastroUsuarioBean.salvar}" />
 				</p:toolbarGroup>
 				
 				<p:toolbarGroup align="right">
@@ -31,14 +34,15 @@
 					columnClasses="rotulo, campo">
 					
 				<p:outputLabel value="Nome" for="nome" />
-				<p:inputText id="nome" size="50" maxlength="50" />
+				<p:inputText id="nome" size="50" maxlength="50" value="#{cadastroUsuarioBean.usuario.nome}" />
 				
 				<p:outputLabel value="E-mail" for="email" />
-				<p:inputText id="email" size="50" maxlength="50" />
+				<p:inputText id="email" size="50" maxlength="50" value="#{cadastroUsuarioBean.usuario.email}" />
 				
 				<p:outputLabel value="Senha" for="senha" />
 				<p:password id="senha" size="25" maxlength="25" feedback="true" weakLabel="Fraca"
-					goodLabel="Boa" strongLabel="Forte" promptLabel="Por favor, insira uma senha!" />
+					goodLabel="Boa" strongLabel="Forte" promptLabel="Por favor, insira uma senha!"
+					value="#{cadastroUsuarioBean.usuario.senha}" />
 
 				<p:selectOneMenu>
 					<f:selectItem itemLabel="Administradores" />
