@@ -20,6 +20,8 @@ import javax.validation.constraints.Size;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.hibernate.validator.constraints.NotBlank;
 
+import br.com.pedidovenda.validation.SKU;
+
 @Entity
 @Table(name = "produto")
 public class Produto implements Serializable {
@@ -53,7 +55,7 @@ public class Produto implements Serializable {
 		this.nome = nome;
 	}
 
-	@NotBlank(message = "é obrigatório")
+	@NotBlank @SKU
 	@Column(nullable = false, length = 20, unique = true)
 	public String getSku() {
 		return sku;
@@ -62,7 +64,7 @@ public class Produto implements Serializable {
 		this.sku = sku == null ? null : sku.toUpperCase();
 	}
 
-	@NotNull
+	@NotNull(message = "é obrigatório")
 	@Column(name="valor_unitario", nullable = false, precision = 10, scale = 2)
 	public BigDecimal getValorUnitario() {
 		return valorUnitario;
