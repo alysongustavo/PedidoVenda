@@ -19,8 +19,8 @@ public @interface SKU {
 	@OverridesAttribute(constraint = Pattern.class, name = "message")
 	String message() default "{br.com.pedidovenda.constraints.SKU.message}";
 	
-	Class<?>[] groups() default {};
+	Class<?>[] groups() default { };
 	
-	Class<? extends Payload>[] payload() default {};
+	Class<? extends Payload>[] payload() default { };
 
 }
