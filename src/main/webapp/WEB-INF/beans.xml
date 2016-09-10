@@ -9,7 +9,13 @@
 			org.apache.deltaspike.jpa.impl.transaction.TransactionalInterceptor
 		</class>
 	</interceptors>
-	-->	       		
+	-->
+	
+	<interceptors>
+		<class>
+			br.com.pedidovenda.util.jpa.TransactionInterceptor
+		</class>
+	</interceptors>	       		
 	 
 </beans>
 	
