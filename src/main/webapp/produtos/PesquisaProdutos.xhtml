@@ -60,7 +60,10 @@
 	    		</p:column>
 	    		
 	    		<p:column style="text-align: center; width: 100px">
-	    			<p:button icon="fa fa-pencil-square-o" title="Editar" />
+	    			<p:button icon="fa fa-pencil-square-o" title="Editar" outcome="/produtos/CadastroProduto">
+	    				<f:param name="produto" value="#{produto.id}" />
+	    			</p:button>
+	    			
 	    			<p:commandButton icon="fa fa-trash-o" title="Excluir">
 	    				<p:confirm icon="fa fa-exclamation-triangle" header="Confirmação de exclusão"
 							message="Excluir o produto selecionado?" />
