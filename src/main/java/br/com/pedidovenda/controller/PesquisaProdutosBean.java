@@ -10,6 +10,7 @@ import javax.inject.Named;
 import br.com.pedidovenda.model.Produto;
 import br.com.pedidovenda.repository.Produtos;
 import br.com.pedidovenda.repository.filter.ProdutoFilter;
+import br.com.pedidovenda.util.jsf.FacesUtil;
 
 @Named
 @ViewScoped
@@ -23,12 +24,21 @@ public class PesquisaProdutosBean implements Serializable {
 	private List<Produto> produtosFiltrados;
 	private ProdutoFilter filtro;
 	
+	private Produto produtoSelecionado;
+	
 	public PesquisaProdutosBean() {
 		filtro = new ProdutoFilter();
 	}
 	
 	public void pesquisar() {
 		produtosFiltrados = produtos.filtrados(filtro);
+	}
+	
+	public void excluir() {
+		produtos.remover(produtoSelecionado);
+		produtosFiltrados.remove(produtoSelecionado);
+		
+		FacesUtil.addInfoMessage("Produto " + produtoSelecionado.getSku() + " excluído com sucesso!");
 	}
 
 	public List<Produto> getProdutosFiltrados() {
@@ -37,6 +47,13 @@ public class PesquisaProdutosBean implements Serializable {
 
 	public ProdutoFilter getFiltro() {
 		return filtro;
+	}
+
+	public Produto getProdutoSelecionado() {
+		return produtoSelecionado;
+	}
+	public void setProdutoSelecionado(Produto produtoSelecionado) {
+		this.produtoSelecionado = produtoSelecionado;
 	}
 	
 }

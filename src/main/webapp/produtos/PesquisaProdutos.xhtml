@@ -8,7 +8,7 @@
 	<ui:define name="titulo">Pesquisa de produtos</ui:define>
 
 	<ui:define name="corpo">
-		<h:form id="frm">
+		<h:form id="frm" prependId="false">
 			<h1>Pesquisa de produtos</h1>
 			
 			<p:messages autoUpdate="true" closable="true" />
@@ -64,9 +64,13 @@
 	    				<f:param name="produto" value="#{produto.id}" />
 	    			</p:button>
 	    			
-	    			<p:commandButton icon="fa fa-trash-o" title="Excluir">
+	    			<p:commandButton icon="fa fa-trash-o" title="Excluir" process="@this" update="@form"
+	    					action="#{pesquisaProdutosBean.excluir}">
+	    				<f:setPropertyActionListener value="#{produto}"
+	    					target="#{pesquisaProdutosBean.produtoSelecionado}" />
 	    				<p:confirm icon="fa fa-exclamation-triangle" header="Confirmação de exclusão"
-							message="Excluir o produto selecionado?" />
+							message="Tem certeza que deseja excluir o produto #{produto.sku}?" />
+						<f:ajax execute="@form" render=":produtosTable" />
 	    			</p:commandButton>
 	    		</p:column>
 			
