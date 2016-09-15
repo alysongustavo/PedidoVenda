@@ -22,7 +22,7 @@
 		            </span>
 					
 					<p:commandButton value="Salvar" id="botaoSalvar" icon="fa fa-floppy-o"
-						action="#{cadastroUsuarioBean.salvar}" />
+						action="#{cadastroUsuarioBean.salvar}" update="@form" />
 				</p:toolbarGroup>
 				
 				<p:toolbarGroup align="right">
@@ -52,7 +52,7 @@
 
 			</p:panelGrid>
 			
-			<p:dataTable id="tabelaGrupos" value="#{cadastroUsuarioBean.grupos}" var="grupo" style="margin-top: 20px">
+			<!-- <p:dataTable id="tabelaGrupos" value="#{cadastroUsuarioBean.grupos}" var="grupo" style="margin-top: 20px">
 				<p:column headerText="Grupo" style="text-align: left">
 					<p:outputLabel value="Auxiliares" />
 				</p:column>
@@ -64,7 +64,7 @@
 	    			</p:commandButton>
 	    		</p:column>
 				
-			</p:dataTable>
+			</p:dataTable> -->
 			
 		</h:form>		
 	</ui:define>
