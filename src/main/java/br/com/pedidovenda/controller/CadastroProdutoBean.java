@@ -38,7 +38,7 @@ public class CadastroProdutoBean implements Serializable {
 	}
 	
 	public void inicializar() {
-		if (FacesUtil.isNotisPostback()) {
+		if (FacesUtil.isNotPostback()) {
 			categoriasRaizes = categorias.raizes();
 			
 			if (this.categoriaPai != null) {

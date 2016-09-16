@@ -9,7 +9,7 @@ public class FacesUtil {
 		return FacesContext.getCurrentInstance().isPostback();
 	}
 	
-	public static boolean isNotisPostback() {
+	public static boolean isNotPostback() {
 		return !isPostback();
 	}
 	

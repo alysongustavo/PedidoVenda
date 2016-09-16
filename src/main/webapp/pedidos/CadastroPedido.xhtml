@@ -5,6 +5,10 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 	
+	<f:metadata>
+		<f:event listener="#{cadastroPedidoBean.inicializar}" type="preRenderView" />
+	</f:metadata>
+	
 	<ui:define name="titulo">Novo pedido</ui:define>
 
 	<ui:define name="corpo">
@@ -19,7 +23,7 @@
 			
 			<p:tabView style="margin-top: 20px">
 				<p:tab title="Itens">
-					<ui:include src="/WEB-INF/template/pedidos/ItensPedido.xhtml" />
+					<!-- <ui:include src="/WEB-INF/template/pedidos/ItensPedido.xhtml" /> -->
 				</p:tab>
 				
 				<p:tab title="Dados de entrega">
