@@ -15,7 +15,7 @@ public class PedidoFilter implements Serializable {
 	private Date dataCriacaoAte;
 	private String nomeVendedor;
 	private String nomeCliente;
-	private StatusPedido[] status;
+	private StatusPedido[] statuses;
 
 	public Long getNumeroDe() {
 		return numeroDe;
@@ -65,12 +65,12 @@ public class PedidoFilter implements Serializable {
 		this.nomeCliente = nomeCliente;
 	}
 
-	public StatusPedido[] getStatus() {
-		return status;
+	public StatusPedido[] getStatuses() {
+		return statuses;
 	}
 
-	public void setStatus(StatusPedido[] status) {
-		this.status = status;
+	public void setStatuses(StatusPedido[] statuses) {
+		this.statuses = statuses;
 	}
 
 }

@@ -45,7 +45,7 @@
 				<p:inputText size="40" value="#{pesquisaPedidosBean.filtro.nomeCliente}" />
 				
 				<p:outputLabel value="Status" />
-				<p:selectManyCheckbox value="#{pesquisaPedidosBean.filtro.status}">
+				<p:selectManyCheckbox value="#{pesquisaPedidosBean.filtro.statuses}">
 					<f:selectItems value="#{pesquisaPedidosBean.status}" var="status" itemValue="#{status}" itemLabel="#{status.descricao}" />
 				</p:selectManyCheckbox>
 				
@@ -84,7 +84,9 @@
 				</p:column>
 				
 				<p:column style="text-align: center; width: 50px">
-					<p:button icon="fa fa-pencil-square-o" title="Editar" />
+					<p:button icon="fa fa-pencil-square-o" title="Editar" outcome="/pedidos/CadastroPedido">
+						<f:param name="pedido" value="#{pedido.id}" />
+					</p:button>
 				</p:column>
 			
 			</p:dataTable>
