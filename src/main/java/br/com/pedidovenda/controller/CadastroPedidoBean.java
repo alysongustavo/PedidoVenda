@@ -121,6 +121,18 @@ public class CadastroPedidoBean implements Serializable {
 		return produtos.porNome(nome);
 	}
 	
+	public void atualizarQuantidade(ItemPedido item, int linha) {
+		if (item.getQuantidade() < 1) {
+			if (linha == 0) {
+				item.setQuantidade(1);
+			} else {
+				getPedido().getItens().remove(linha);
+			}
+		}
+		
+		pedido.recalcularValorTotal();
+	}
+	
 	public FormaPagamento[] getFormasPagamento() {
 		return FormaPagamento.values();
 	}
