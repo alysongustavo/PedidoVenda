@@ -84,7 +84,7 @@
 			<scope>compile</scope>
 		</dependency>
 
-		<!-- Servlet -->
+		<!-- API de Servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -92,7 +92,7 @@
 			<scope>provided</scope>
 		</dependency>
 		
-		<!-- Selenium WebDriver for Java -->
+		<!-- Selenium WebDriver for Java
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
@@ -102,7 +102,7 @@
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-server</artifactId>
 			<version>2.53.0</version>
-		</dependency>
+		</dependency> -->
 		
 		<!-- JUnit -->
 		<dependency>

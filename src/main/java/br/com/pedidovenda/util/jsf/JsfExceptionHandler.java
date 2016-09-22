@@ -13,7 +13,7 @@ import javax.faces.event.ExceptionQueuedEvent;
 import javax.faces.event.ExceptionQueuedEventContext;
 
 import org.apache.commons.logging.Log;
-import org.openqa.jetty.log.LogFactory;
+import org.apache.commons.logging.LogFactory;
 
 import br.com.pedidovenda.service.NegocioException;
 

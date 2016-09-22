@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 
@@ -22,8 +23,8 @@ public class ItemPedido implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
-	private Integer quantidade;
-	private BigDecimal valorUnitario;
+	private Integer quantidade = 1;
+	private BigDecimal valorUnitario = BigDecimal.ZERO;
 	
 	private Produto produto;
 	private Pedido pedido;
@@ -86,6 +87,16 @@ public class ItemPedido implements Serializable {
 		}
 		ItemPedido other = (ItemPedido) obj;
 		return new EqualsBuilder().append(id, other.id).isEquals();
+	}
+	
+	@Transient
+	public BigDecimal getValorTotal() {
+		return getValorUnitario().multiply(new BigDecimal(getQuantidade()));
+	}
+	
+	@Transient
+	public boolean isProdutoAssociado() {
+		return getProduto() != null && getProduto().getId() != null;
 	}
 
 }

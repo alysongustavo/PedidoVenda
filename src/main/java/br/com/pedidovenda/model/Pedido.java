@@ -13,6 +13,7 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -161,7 +162,7 @@ public class Pedido implements Serializable {
 		this.enderecoEntrega = enderecoEntrega;
 	}
 	
-	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	public List<ItemPedido> getItens() {
 		return itens;
 	}
@@ -194,6 +195,42 @@ public class Pedido implements Serializable {
 		}
 		Pedido other = (Pedido) obj;
 		return new EqualsBuilder().append(id, other.id).isEquals();
+	}
+	
+	@Transient
+	public BigDecimal getValorSubtotal() {
+		return getValorTotal().subtract(getValorFrete()).add(getValorDesconto());
+	}
+	
+	public void recalcularValorTotal() {
+		BigDecimal total = BigDecimal.ZERO;
+		
+		total = total.add(getValorFrete()).subtract(getValorDesconto());
+		
+		for (ItemPedido item : getItens()) {
+			if (item.getProduto() != null && item.getProduto().getId() != null) {
+				total = total.add(item.getValorTotal());
+			}
+		}
+		
+		setValorTotal(total);
+	}
+	
+	public void adicionarItemVazio() {
+		if (isOrcamento()) {
+			Produto produto = new Produto();
+			
+			ItemPedido item = new ItemPedido();
+			item.setProduto(produto);
+			item.setPedido(this);
+			
+			getItens().add(0, item);
+		}
+	}
+	
+	@Transient
+	public boolean isOrcamento() {
+		return StatusPedido.ORCAMENTO.equals(getStatus());
 	}
 
 }
