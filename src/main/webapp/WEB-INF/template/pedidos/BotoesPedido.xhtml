@@ -14,7 +14,8 @@
 		</p:toolbarGroup>
 
 		<p:toolbarGroup align="right">
-			<p:commandButton value="Emitir" icon="fa fa-cart-plus" />
+			<p:commandButton value="Emitir" icon="fa fa-cart-plus" action="#{emissaoPedidoBean.emitirPedido}"
+				process="@form" update="@form" />
 			<p:commandButton value="Cancelar" icon="fa fa-ban" />
 			<p:commandButton value="Enviar por e-mail" icon="fa fa-envelope-o" />
 			

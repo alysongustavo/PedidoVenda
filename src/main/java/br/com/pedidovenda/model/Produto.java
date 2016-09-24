@@ -20,6 +20,7 @@ import javax.validation.constraints.Size;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.hibernate.validator.constraints.NotBlank;
 
+import br.com.pedidovenda.service.NegocioException;
 import br.com.pedidovenda.validation.SKU;
 
 @Entity
@@ -107,6 +108,17 @@ public class Produto implements Serializable {
 		}
 		Produto other = (Produto) obj;
 		return new EqualsBuilder().append(id, other.id).isEquals();
+	}
+	
+	public void baixarEstoque(Integer quantidade) {
+		int novaQuantidada = getQuantidadeEstoque() - quantidade;
+		
+		if (novaQuantidada < 0) {
+			throw new NegocioException("Não há disponibilidade no estoque de "
+					+ quantidade + " itens do produto " + getSku() + ".");
+		}
+		
+		setQuantidadeEstoque(novaQuantidada);
 	}
 	
 }

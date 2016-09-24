@@ -3,6 +3,8 @@ package br.com.pedidovenda.controller;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.enterprise.event.Observes;
+import javax.enterprise.inject.Produces;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -21,6 +23,7 @@ import br.com.pedidovenda.repository.Produtos;
 import br.com.pedidovenda.repository.Usuarios;
 import br.com.pedidovenda.service.CadastroPedidoService;
 import br.com.pedidovenda.util.jsf.FacesUtil;
+import br.com.pedidovenda.validation.PedidoEdicao;
 import br.com.pedidovenda.validation.SKU;
 
 @Named
@@ -41,9 +44,13 @@ public class CadastroPedidoBean implements Serializable {
 	@Inject
 	private Produtos produtos;
 	
-	private Pedido pedido;
-	private List<Usuario> vendedores;
 	private String sku;
+	
+	@Produces
+	@PedidoEdicao
+	private Pedido pedido;
+	
+	private List<Usuario> vendedores;
 	
 	private Produto produtoLinhaEditavel;
 	
@@ -64,6 +71,10 @@ public class CadastroPedidoBean implements Serializable {
 	private void limpar() {
 		pedido = new Pedido();
 		pedido.setEnderecoEntrega(new EnderecoEntrega());
+	}
+	
+	public void pedidoAlterado(@Observes PedidoAlteradoEvent event) {
+		pedido = event.getPedido();
 	}
 	
 	public void salvar() {

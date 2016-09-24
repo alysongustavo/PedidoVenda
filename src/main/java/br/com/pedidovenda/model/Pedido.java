@@ -250,5 +250,15 @@ public class Pedido implements Serializable {
 	public boolean isEmitido() {
 		return StatusPedido.EMITIDO.equals(getStatus());
 	}
+	
+	@Transient
+	public boolean isNaoEmissivel() {
+		return !isEmissivel();
+	}
+	
+	@Transient
+	public boolean isEmissivel() {
+		return isExistente() && isOrcamento();
+	}
 
 }
