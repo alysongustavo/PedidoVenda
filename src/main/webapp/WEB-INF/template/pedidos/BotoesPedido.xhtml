@@ -10,14 +10,17 @@
 
 			<p:separator />
 
-			<p:commandButton value="Salvar" icon="fa fa-floppy-o" action="#{cadastroPedidoBean.salvar}" update="@form" />
+			<p:commandButton value="Salvar" icon="fa fa-floppy-o" action="#{cadastroPedidoBean.salvar}" update="@form"
+				disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" />
 		</p:toolbarGroup>
 
 		<p:toolbarGroup align="right">
 			<p:commandButton value="Emitir" icon="fa fa-cart-plus" action="#{emissaoPedidoBean.emitirPedido}"
-				process="@form" update="@form" />
+				process="@form" update="@form" disabled="#{cadastroPedidoBean.pedido.naoEmissivel}" />
+				
 			<p:commandButton value="Cancelar" icon="fa fa-ban" action="#{cancelamentoPedidoBean.cancelarPedido}"
-				process="@this" update="@form" />
+				process="@this" update="@form" disabled="#{cadastroPedidoBean.pedido.naoCancelavel}" />
+				
 			<p:commandButton value="Enviar por e-mail" icon="fa fa-envelope-o" />
 			
 			<p:separator />

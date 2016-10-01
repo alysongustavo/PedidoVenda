@@ -133,3 +133,7 @@ h1 {
 .msg-exclusao-painel {
 	margin-left: 55px;
 }
+
+.ui-state-disabled {
+	opacity: .80 !important;
+}
