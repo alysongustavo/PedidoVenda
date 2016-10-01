@@ -9,35 +9,35 @@ import br.com.pedidovenda.model.StatusPedido;
 import br.com.pedidovenda.repository.Pedidos;
 import br.com.pedidovenda.util.jpa.Transactional;
 
-public class EmissaoPedidoService implements Serializable {
+public class CancelamentoPedidoService implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
-	private CadastroPedidoService cadastroPedidoService;
+	private Pedidos pedidos;
 	
 	@Inject
 	private EstoqueService estoqueService; 
-	
-	@Inject
-	private Pedidos pedidos;
-	
+
 	@Transactional
-	public Pedido emitir(Pedido pedido) {
-		pedido = cadastroPedidoService.salvar(pedido);
+	public Pedido cancelar(Pedido pedido) {
+		pedido = pedidos.porId(pedido.getId());
 		
-		if (pedido.isNaoEmissivel()) {
-			throw new NegocioException("Pedido não pode ser emitido com status "
-					+ pedido.getStatus() + ".");
+		if (pedido.isNaoCancelavel()) {
+			throw new NegocioException("Pedido não pode ser cancelado no status "
+					+ pedido.getStatus().getDescricao() + ".");
 		}
 		
-		estoqueService.baixarItensEstoque(pedido);
+		if (pedido.isEmitido()) {
+			estoqueService.retornarItensEstoque(pedido);
+		}
 		
-		pedido.setStatus(StatusPedido.EMITIDO);
+		pedido.setStatus(StatusPedido.CANCELADO);
 		
 		pedido = pedidos.guardar(pedido);
 		
+		
 		return pedido;
 	}
-
+	
 }

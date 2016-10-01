@@ -2,8 +2,8 @@ package br.com.pedidovenda.controller;
 
 import java.io.Serializable;
 
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.event.Event;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -13,7 +13,7 @@ import br.com.pedidovenda.util.jsf.FacesUtil;
 import br.com.pedidovenda.validation.PedidoEdicao;
 
 @Named
-@ViewScoped
+@RequestScoped
 public class EmissaoPedidoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;

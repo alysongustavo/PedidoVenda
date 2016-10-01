@@ -121,4 +121,8 @@ public class Produto implements Serializable {
 		setQuantidadeEstoque(novaQuantidada);
 	}
 	
+	public void adicionarEstoque(Integer quantidade) {
+		setQuantidadeEstoque(getQuantidadeEstoque() + quantidade);
+	}
+	
 }
