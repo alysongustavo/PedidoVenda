@@ -289,5 +289,10 @@ public class Pedido implements Serializable {
 	public boolean isAlteravel() {
 		return isOrcamento();
 	}
+	
+	@Transient
+	public boolean isNaoEnviavelPorEmail() {
+		return isNovo() || isCancelado();
+	}
 
 }
