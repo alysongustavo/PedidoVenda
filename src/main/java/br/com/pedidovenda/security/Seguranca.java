@@ -1,6 +1,7 @@
 package br.com.pedidovenda.security;
 
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Produces;
 import javax.faces.context.ExternalContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -26,7 +27,9 @@ public class Seguranca {
 		return nome;
 	}
 
-	private UsuarioSistema getUsuarioLogado() {
+	@Produces
+	@UsuarioLogado
+	public UsuarioSistema getUsuarioLogado() {
 		UsuarioSistema usuario = null;
 		
 		UsernamePasswordAuthenticationToken auth = (UsernamePasswordAuthenticationToken) 

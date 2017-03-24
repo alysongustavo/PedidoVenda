@@ -1,6 +1,13 @@
 package br.com.pedidovenda.controller;
 
+import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Map;
+
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.model.chart.AxisType;
@@ -8,9 +15,23 @@ import org.primefaces.model.chart.CategoryAxis;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartModel;
 
+import br.com.pedidovenda.model.Usuario;
+import br.com.pedidovenda.repository.Pedidos;
+import br.com.pedidovenda.security.UsuarioLogado;
+import br.com.pedidovenda.security.UsuarioSistema;
+
 @Named
 @RequestScoped
 public class GraficoPedidosCriadosBean {
+	
+	private static DateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM");
+	
+	@Inject
+	private Pedidos pedidos;
+	
+	@Inject
+	@UsuarioLogado
+	private UsuarioSistema usuarioLogado;
 	
 	private LineChartModel model;
 	
@@ -22,18 +43,18 @@ public class GraficoPedidosCriadosBean {
 		
 		model.getAxes().put(AxisType.X, new CategoryAxis());
 		
-		adicionarSerie("Todos os pedidos");
-		adicionarSerie("Meus pedidos");
+		adicionarSerie("Todos os pedidos", null);
+		adicionarSerie("Meus pedidos", usuarioLogado.getUsuario());
 	}
 
-	private void adicionarSerie(String rotulo) {
+	private void adicionarSerie(String rotulo, Usuario criadoPor) {
+		Map<Date, BigDecimal> valoresPorData = pedidos.valoresTotaisPorData(15, criadoPor);
+		
 		ChartSeries series = new ChartSeries(rotulo);
 		
-		series.set("1", Math.random() * 1000);
-		series.set("2", Math.random() * 1000);
-		series.set("3", Math.random() * 1000);
-		series.set("4", Math.random() * 1000);
-		series.set("5", Math.random() * 1000);
+		for (Date data : valoresPorData.keySet()) {
+			series.set(DATE_FORMAT.format(data), valoresPorData.get(data));
+		}
 		
 		model.addSeries(series);
 	}
