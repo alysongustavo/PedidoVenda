@@ -56,7 +56,8 @@ public class Produto implements Serializable {
 		this.nome = nome;
 	}
 
-	@NotBlank @SKU // (message = "Informe um SKU válido.") *Obs.: Opcional
+	@NotBlank(message = "Por favor, informe o SKU")
+	@SKU(message = "Por favor, informe um SKU no formato XX9999")
 	@Column(nullable = false, length = 20, unique = true)
 	public String getSku() {
 		return sku;
@@ -65,7 +66,7 @@ public class Produto implements Serializable {
 		this.sku = sku == null ? null : sku.toUpperCase();
 	}
 
-	@NotNull(message = "é obrigatório")
+	@NotNull
 	@Column(name="valor_unitario", nullable = false, precision = 10, scale = 2)
 	public BigDecimal getValorUnitario() {
 		return valorUnitario;
@@ -74,7 +75,9 @@ public class Produto implements Serializable {
 		this.valorUnitario = valorUnitario;
 	}
 
-	@NotNull @Min(0) @Max(value = 9999, message = "tem um valor muito alto")
+	@NotNull
+	@Min(0)
+	@Max(value = 9999, message = "tem um valor muito alto")
 	@Column(name="quantidade_estoque", nullable = false, length = 5)
 	public Integer getQuantidadeEstoque() {
 		return quantidadeEstoque;
