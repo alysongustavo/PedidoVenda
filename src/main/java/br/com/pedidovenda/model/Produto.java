@@ -56,7 +56,7 @@ public class Produto implements Serializable {
 		this.nome = nome;
 	}
 
-	@NotBlank @SKU
+	@NotBlank @SKU // (message = "Informe um SKU válido.") *Obs.: Opcional
 	@Column(nullable = false, length = 20, unique = true)
 	public String getSku() {
 		return sku;

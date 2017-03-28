@@ -27,7 +27,7 @@
 		            </span>
 					
 					<p:commandButton value="Salvar" icon="fa fa-floppy-o" action="#{cadastroProdutoBean.salvar}"
-						update="@form" />
+						update="@form" validateClient="true" /> <!-- Ativando validação client-side -->
 				</p:toolbarGroup>
 				
 				<p:toolbarGroup align="right">
