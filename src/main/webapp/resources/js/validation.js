@@ -5,6 +5,18 @@ PrimeFaces.locales['pt_BR'] = {
 	}
 };
 
+PrimeFaces.converter['com.algaworks.Categoria'] = {
+		
+		convert : function(element, value) {
+			if (value === null || value === '') {
+				return null;
+			}
+			
+			return parseInt(value);
+		}
+			
+};
+
 PrimeFaces.validator.NotBlank = {
 	
 	MESSAGE_ID : 'org.hibernate.validator.constraints.NotBlank.message',
