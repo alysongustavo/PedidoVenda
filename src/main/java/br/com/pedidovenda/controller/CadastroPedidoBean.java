@@ -5,11 +5,14 @@ import java.util.List;
 
 import javax.enterprise.event.Observes;
 import javax.enterprise.inject.Produces;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.validator.constraints.NotBlank;
+import org.primefaces.event.SelectEvent;
 
 import br.com.pedidovenda.model.Cliente;
 import br.com.pedidovenda.model.EnderecoEntrega;
@@ -44,6 +47,9 @@ public class CadastroPedidoBean implements Serializable {
 	@Inject
 	private Produtos produtos;
 	
+	@Inject
+	private FacesContext facesContext;
+	
 	private String sku;
 	
 	@Produces
@@ -66,6 +72,10 @@ public class CadastroPedidoBean implements Serializable {
 			
 			recalcularPedido();
 		}
+	}
+	
+	public void clienteSelecionado(SelectEvent event) {
+		pedido.setCliente((Cliente) event.getObject());
 	}
 	
 	private void limpar() {
@@ -186,6 +196,22 @@ public class CadastroPedidoBean implements Serializable {
 	}
 	public void setSku(String sku) {
 		this.sku = sku;
+	}
+	
+	@NotBlank
+	public String getNomeCliente() {
+		return pedido.getCliente() == null ? null : pedido.getCliente().getNome();
+	}
+	public void setNomeCliente(String nome) {
+	}
+	
+	/**
+	 * Verifica se a fase de renderização é response
+	 * @author gilsonsilvati 
+	 * -- 01/04/2017 
+	 */
+	public boolean isPhaseRenderResponse() {
+		return facesContext.getCurrentPhaseId().getName().equals("RENDER_RESPONSE");
 	}
 	
 }
