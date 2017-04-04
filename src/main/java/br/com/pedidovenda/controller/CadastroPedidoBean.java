@@ -25,6 +25,7 @@ import br.com.pedidovenda.repository.Clientes;
 import br.com.pedidovenda.repository.Produtos;
 import br.com.pedidovenda.repository.Usuarios;
 import br.com.pedidovenda.service.CadastroPedidoService;
+import br.com.pedidovenda.service.NegocioException;
 import br.com.pedidovenda.util.jsf.FacesUtil;
 import br.com.pedidovenda.validation.PedidoEdicao;
 import br.com.pedidovenda.validation.SKU;
@@ -94,6 +95,8 @@ public class CadastroPedidoBean implements Serializable {
 			pedido = pedidoService.salvar(pedido);
 			
 			FacesUtil.addInfoMessage("Pedido salvo com sucesso!");
+		} catch (NegocioException ne) {
+			FacesUtil.addErrorMessage(ne.getMessage());
 		} finally {
 			pedido.adicionarItemVazio();
 		}

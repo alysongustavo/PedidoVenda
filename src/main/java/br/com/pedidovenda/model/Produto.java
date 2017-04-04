@@ -113,7 +113,7 @@ public class Produto implements Serializable {
 		return new EqualsBuilder().append(id, other.id).isEquals();
 	}
 	
-	public void baixarEstoque(Integer quantidade) {
+	public void baixarEstoque(Integer quantidade) throws NegocioException {
 		int novaQuantidada = getQuantidadeEstoque() - quantidade;
 		
 		if (novaQuantidada < 0) {

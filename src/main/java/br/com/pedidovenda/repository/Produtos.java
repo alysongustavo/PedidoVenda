@@ -32,7 +32,7 @@ public class Produtos implements Serializable {
 	}
 	
 	@Transactional
-	public void remover(Produto produto) {
+	public void remover(Produto produto) throws NegocioException {
 		try {
 			produto = porId(produto.getId());
 			manager.remove(produto);

@@ -10,6 +10,7 @@ import javax.inject.Named;
 import br.com.pedidovenda.model.Produto;
 import br.com.pedidovenda.repository.Produtos;
 import br.com.pedidovenda.repository.filter.ProdutoFilter;
+import br.com.pedidovenda.service.NegocioException;
 import br.com.pedidovenda.util.jsf.FacesUtil;
 
 @Named
@@ -35,10 +36,14 @@ public class PesquisaProdutosBean implements Serializable {
 	}
 	
 	public void excluir() {
-		produtos.remover(produtoSelecionado);
-		produtosFiltrados.remove(produtoSelecionado);
-		
-		FacesUtil.addInfoMessage("Produto " + produtoSelecionado.getSku() + " excluído com sucesso!");
+		try {
+			produtos.remover(produtoSelecionado);
+			produtosFiltrados.remove(produtoSelecionado);
+			
+			FacesUtil.addInfoMessage("Produto " + produtoSelecionado.getSku() + " excluído com sucesso!");
+		} catch (NegocioException ne) {
+			FacesUtil.addErrorMessage(ne.getMessage());
+		}
 	}
 
 	public List<Produto> getProdutosFiltrados() {

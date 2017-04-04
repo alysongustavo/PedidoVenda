@@ -18,7 +18,7 @@ public class CadastroPedidoService implements Serializable {
 	private Pedidos pedidos;
 	
 	@Transactional
-	public Pedido salvar(Pedido pedido) {
+	public Pedido salvar(Pedido pedido) throws NegocioException {
 		if (pedido.isNovo()) {
 			pedido.setDataCriacao(new Date());
 			pedido.setStatus(StatusPedido.ORCAMENTO);

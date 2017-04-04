@@ -9,6 +9,7 @@ import javax.inject.Named;
 
 import br.com.pedidovenda.model.Pedido;
 import br.com.pedidovenda.service.CancelamentoPedidoService;
+import br.com.pedidovenda.service.NegocioException;
 import br.com.pedidovenda.util.jsf.FacesUtil;
 import br.com.pedidovenda.validation.PedidoEdicao;
 
@@ -29,10 +30,14 @@ public class CancelamentoPedidoBean implements Serializable {
 	private Pedido pedido;
 	
 	public void cancelarPedido() {
-		pedido = cancelamentoPedidoService.cancelar(pedido);
-		event.fire(new PedidoAlteradoEvent(pedido));
-		
-		FacesUtil.addInfoMessage("Pedido cancelado com sucesso!");
+		try {
+			pedido = cancelamentoPedidoService.cancelar(pedido);
+			event.fire(new PedidoAlteradoEvent(pedido));
+			
+			FacesUtil.addInfoMessage("Pedido cancelado com sucesso!");
+		} catch (NegocioException ne) {
+			FacesUtil.addErrorMessage(ne.getMessage());
+		}
 	}
 
 }

@@ -13,6 +13,7 @@ import br.com.pedidovenda.model.Categoria;
 import br.com.pedidovenda.model.Produto;
 import br.com.pedidovenda.repository.Categorias;
 import br.com.pedidovenda.service.CadastroProdutoService;
+import br.com.pedidovenda.service.NegocioException;
 import br.com.pedidovenda.util.jsf.FacesUtil;
 
 @Named
@@ -58,9 +59,13 @@ public class CadastroProdutoBean implements Serializable {
 	}
 	
 	public void salvar() {
-		produto = produtoService.salvar(produto);
-		limpar();
-		FacesUtil.addInfoMessage("Produto salvo com sucesso!");
+		try {
+			produto = produtoService.salvar(produto);
+			limpar();
+			FacesUtil.addInfoMessage("Produto salvo com sucesso!");
+		} catch (NegocioException ne) {
+			FacesUtil.addErrorMessage(ne.getMessage());
+		}
 	}
 
 	public Produto getProduto() {

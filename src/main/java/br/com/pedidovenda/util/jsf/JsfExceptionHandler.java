@@ -1,4 +1,4 @@
-package br.com.pedidovenda.util.jsf;
+/*package br.com.pedidovenda.util.jsf;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -91,3 +91,4 @@ public class JsfExceptionHandler extends ExceptionHandlerWrapper {
 	}
 	
 }
+*/
