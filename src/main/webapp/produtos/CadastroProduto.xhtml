@@ -12,8 +12,10 @@
 			<f:viewParam name="produto" value="#{cadastroProdutoBean.produto}" />
 			<f:event listener="#{cadastroProdutoBean.inicializar}" type="preRenderView" />
 		</f:metadata>
+		
+		<p:focus />
 	
-		<h:form>
+		<h:form id="frm">
 			<h1>#{cadastroProdutoBean.editando ? 'Edição de produto' : 'Novo produto'}</h1>
 			
 			<p:messages autoUpdate="true" closable="true" />

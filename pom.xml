@@ -239,6 +239,14 @@
 			<scope>compile</scope>
 		</dependency>
 		
+		<!-- Usado para geração de arquivos Excel -->
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi</artifactId>
+		    <version>3.11</version>
+		    <!-- <scope>compile</scope> -->
+		</dependency>
+		
 	</dependencies>
 
 	<!-- Maven Compile -->
