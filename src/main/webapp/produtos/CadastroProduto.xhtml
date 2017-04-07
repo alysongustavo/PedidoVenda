@@ -3,13 +3,14 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui">
 	
 	<ui:define name="titulo">#{cadastroProdutoBean.editando ? 'Edição de produto' : 'Novo produto'}</ui:define>
 
 	<ui:define name="corpo">
 		<f:metadata>
-			<f:viewParam name="produto" value="#{cadastroProdutoBean.produto}" />
+			<o:viewParam name="produto" value="#{cadastroProdutoBean.produto}" />
 			<f:event listener="#{cadastroProdutoBean.inicializar}" type="preRenderView" />
 		</f:metadata>
 		

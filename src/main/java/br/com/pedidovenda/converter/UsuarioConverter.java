@@ -4,26 +4,28 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Inject;
+
+import org.apache.commons.lang3.StringUtils;
 
 import br.com.pedidovenda.model.Usuario;
 import br.com.pedidovenda.repository.Usuarios;
-import br.com.pedidovenda.util.cdi.CDIServiceLocator;
 
 @FacesConverter(forClass=Usuario.class)
 public class UsuarioConverter implements Converter {
 
-	//@Inject
+	@Inject
 	private Usuarios usuarios;
 	
-	public UsuarioConverter() {
+	/*public UsuarioConverter() {
 		this.usuarios = CDIServiceLocator.getBean(Usuarios.class);
-	}
+	}*/
 	
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		Usuario retorno = null;
 
-		if (value != null) {
+		if (StringUtils.isNotEmpty(value)) {
 			retorno = this.usuarios.porId(new Long(value));
 		}
 

@@ -67,6 +67,10 @@ public class CadastroPedidoBean implements Serializable {
 	
 	public void inicializar() {
 		if (FacesUtil.isNotPostback()) {
+			if (pedido == null) {
+				limpar();
+			}
+			
 			vendedores = usuarios.vendedores();
 			
 			pedido.adicionarItemVazio();
