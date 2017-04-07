@@ -16,11 +16,16 @@ public class PedidoFilter implements Serializable {
 	private String nomeVendedor;
 	private String nomeCliente;
 	private StatusPedido[] statuses;
+	
+	// Para o carregamento Lazy (preguiçoso)
+	private int primeiroRegistro;
+	private int quantidadeRegistros;
+	private String propriedadeOrdenacao;
+	private boolean ascendente;
 
 	public Long getNumeroDe() {
 		return numeroDe;
 	}
-
 	public void setNumeroDe(Long numeroDe) {
 		this.numeroDe = numeroDe;
 	}
@@ -28,7 +33,6 @@ public class PedidoFilter implements Serializable {
 	public Long getNumeroAte() {
 		return numeroAte;
 	}
-
 	public void setNumeroAte(Long numeroAte) {
 		this.numeroAte = numeroAte;
 	}
@@ -36,7 +40,6 @@ public class PedidoFilter implements Serializable {
 	public Date getDataCriacaoDe() {
 		return dataCriacaoDe;
 	}
-
 	public void setDataCriacaoDe(Date dataCriacaoDe) {
 		this.dataCriacaoDe = dataCriacaoDe;
 	}
@@ -44,7 +47,6 @@ public class PedidoFilter implements Serializable {
 	public Date getDataCriacaoAte() {
 		return dataCriacaoAte;
 	}
-
 	public void setDataCriacaoAte(Date dataCriacaoAte) {
 		this.dataCriacaoAte = dataCriacaoAte;
 	}
@@ -52,7 +54,6 @@ public class PedidoFilter implements Serializable {
 	public String getNomeVendedor() {
 		return nomeVendedor;
 	}
-
 	public void setNomeVendedor(String nomeVendedor) {
 		this.nomeVendedor = nomeVendedor;
 	}
@@ -60,7 +61,6 @@ public class PedidoFilter implements Serializable {
 	public String getNomeCliente() {
 		return nomeCliente;
 	}
-
 	public void setNomeCliente(String nomeCliente) {
 		this.nomeCliente = nomeCliente;
 	}
@@ -68,9 +68,36 @@ public class PedidoFilter implements Serializable {
 	public StatusPedido[] getStatuses() {
 		return statuses;
 	}
-
 	public void setStatuses(StatusPedido[] statuses) {
 		this.statuses = statuses;
 	}
 
+	public int getPrimeiroRegistro() {
+		return primeiroRegistro;
+	}
+	public void setPrimeiroRegistro(int primeiroRegistro) {
+		this.primeiroRegistro = primeiroRegistro;
+	}
+
+	public int getQuantidadeRegistros() {
+		return quantidadeRegistros;
+	}
+	public void setQuantidadeRegistros(int quantidadeRegistros) {
+		this.quantidadeRegistros = quantidadeRegistros;
+	}
+
+	public String getPropriedadeOrdenacao() {
+		return propriedadeOrdenacao;
+	}
+	public void setPropriedadeOrdenacao(String propriedadeOrdenacao) {
+		this.propriedadeOrdenacao = propriedadeOrdenacao;
+	}
+
+	public boolean isAscendente() {
+		return ascendente;
+	}
+	public void setAscendente(boolean ascendente) {
+		this.ascendente = ascendente;
+	}
+	
 }

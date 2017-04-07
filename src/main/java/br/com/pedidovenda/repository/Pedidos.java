@@ -88,14 +88,11 @@ public class Pedidos implements Serializable {
 		return mapaInicial;
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<Pedido> filtrados(PedidoFilter filtro) {
+	private Criteria criarCriteriaParaFiltro(PedidoFilter filtro) {
 		Session session = this.manager.unwrap(Session.class);
 		
 		Criteria criteria = session.createCriteria(Pedido.class)
-				// fazemos uma associação (join) com cliente e nomeamos como "c"
-				.createAlias("cliente", "c")
-				// fazemos uma associação (join) com vendedor e nomeamos como "v"
+				.createAlias("cliente", "cliente")
 				.createAlias("vendedor", "v");
 		
 		if (filtro.getNumeroDe() != null) {
@@ -131,7 +128,31 @@ public class Pedidos implements Serializable {
 			criteria.add(Restrictions.in("status", filtro.getStatuses()));
 		}
 		
-		return criteria.addOrder(Order.asc("id")).list();
+		return criteria;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Pedido> filtrados(PedidoFilter filtro) {
+		Criteria criteria = criarCriteriaParaFiltro(filtro);
+		
+		criteria.setFirstResult(filtro.getPrimeiroRegistro());
+		criteria.setMaxResults(filtro.getQuantidadeRegistros());
+		
+		if (filtro.isAscendente() && filtro.getPropriedadeOrdenacao() != null) {
+			criteria.addOrder(Order.asc(filtro.getPropriedadeOrdenacao()));
+		} else if (filtro.getPropriedadeOrdenacao() != null) {
+			criteria.addOrder(Order.desc(filtro.getPropriedadeOrdenacao()));
+		}
+		
+		return criteria.list();
+	}
+	
+	public int quantidadeFiltrados(PedidoFilter filtro) {
+		Criteria criteria = criarCriteriaParaFiltro(filtro);
+		
+		criteria.setProjection(Projections.rowCount());
+		
+		return ((Number) criteria.uniqueResult()).intValue();
 	}
 
 	public Pedido guardar(Pedido pedido) {

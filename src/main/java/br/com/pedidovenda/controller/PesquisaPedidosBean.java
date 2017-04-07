@@ -1,8 +1,8 @@
 package br.com.pedidovenda.controller;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -14,6 +14,8 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.IndexedColors;
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortOrder;
 
 import br.com.pedidovenda.model.Pedido;
 import br.com.pedidovenda.model.StatusPedido;
@@ -30,17 +32,32 @@ public class PesquisaPedidosBean implements Serializable {
 	private Pedidos pedidos;
 	
 	private PedidoFilter filtro;
-	private List<Pedido> pedidosFiltrados;
+	private LazyDataModel<Pedido> model;
 	
 	public PesquisaPedidosBean() {
 		filtro = new PedidoFilter();
-		pedidosFiltrados = new ArrayList<>();
+		
+		model = new LazyDataModel<Pedido>() {
+
+			private static final long serialVersionUID = 1L;
+			
+			@Override
+			public List<Pedido> load(int first, int pageSize, String sortField, SortOrder sortOrder, 
+					Map<String, Object> filters) {
+				
+				filtro.setPrimeiroRegistro(first);
+				filtro.setQuantidadeRegistros(pageSize);
+				filtro.setPropriedadeOrdenacao(sortField);
+				filtro.setAscendente(SortOrder.ASCENDING.equals(sortOrder));
+				
+				setRowCount(pedidos.quantidadeFiltrados(filtro));
+				
+				return pedidos.filtrados(filtro);
+			}
+			
+		};
 	}
 
-	public void pesquisar() {
-		pedidosFiltrados = pedidos.filtrados(filtro);
-	}
-	
 	public void posProcessarXls(Object documento) {
 		HSSFWorkbook planilha = (HSSFWorkbook) documento;
 		HSSFSheet folha = planilha.getSheetAt(0);
@@ -72,8 +89,8 @@ public class PesquisaPedidosBean implements Serializable {
 		return StatusPedido.values();
 	}
 	
-	public List<Pedido> getPedidosFiltrados() {
-		return pedidosFiltrados;
+	public LazyDataModel<Pedido> getModel() {
+		return model;
 	}
 
 	public PedidoFilter getFiltro() {
