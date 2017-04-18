@@ -11,7 +11,7 @@
             </tr>
             <tr>
                 <td>Valor total:</td>
-                <td>$numberTool.format("¤ #0.00", $pedido.valorTotal, $locale)</td>
+                <td>$numberTool.currency($pedido.valorTotal)</td>
             </tr>
         </table>
         
@@ -27,9 +27,9 @@
             	#if ($item.produto.id)
 		            <tr>
 		                <td>$item.produto.nome</td>
-		                <td>$numberTool.format("¤ #0.00", $item.produto.valorUnitario, $locale)</td>
+		                <td>$numberTool.currency($item.produto.valorUnitario)</td>
 		                <td>$item.quantidade</td>
-		                <td>$numberTool.format("¤ #0.00", $item.valorTotal, $locale)</td>
+		                <td>$numberTool.currency($item.valorTotal)</td>
 		            </tr>
 	            #end
             #end

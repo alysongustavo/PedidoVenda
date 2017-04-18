@@ -1,7 +1,6 @@
 package br.com.pedidovenda.controller;
 
 import java.io.Serializable;
-import java.util.Locale;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -38,7 +37,6 @@ public class EnvioPedidoEmailBean implements Serializable {
 			.bodyHtml(new VelocityTemplate(getClass().getResourceAsStream("/emails/pedido.template")))
 			.put("pedido", pedido)
 			.put("numberTool", new NumberTool())
-			.put("locale", new Locale("pt", "BR"))
 			.send();
 		
 		FacesUtil.addInfoMessage("Pedido enviado por e-mail com sucesso!");
