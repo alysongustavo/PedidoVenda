@@ -6,22 +6,23 @@
 			<PatternLayout pattern="%d %-5p [%c] %m%n" />
 		</Console>
 		
-		<RollingFile name="rolling-file"
-			fileName="${sys:catalina.home}/logs/pedido-venda-day.log"
-			filePattern="${sys:catalina.home}/logs/pedido-venda-day %d{yyyy-MM-dd}-%i.log">
+		<RollingFile name="arquivo"
+				fileName="${sys:catalina.home}/logs/pedido-venda-day.log"
+				filePattern="${sys:catalina.home}/logs/pedido-venda-day-%d{yyyy-MM-dd}-%i.log">
+			
 			<PatternLayout pattern="%d %-5p [%c] %m%n" />
+			
  			<Policies>
 				<TimeBasedTriggeringPolicy />
+				
 			</Policies>
 		</RollingFile>
-		
 	</Appenders>
 
 	<Loggers>
 		<Root level="info">
-			<AppenderRef ref="console" level="info" />
-			<AppenderRef ref="rolling-file" level="info" />
+			<AppenderRef ref="console" />
+			<AppenderRef ref="arquivo" />
 		</Root>
 	</Loggers>
-	
 </Configuration>

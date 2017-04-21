@@ -32,13 +32,6 @@
 			<scope>compile</scope>
 		</dependency>
 		
-		<!-- PrimeFaces (all themes) -->
-		<!-- <dependency>
-			<groupId>org.primefaces.themes</groupId>
-			<artifactId>all-themes</artifactId>
-			<version>1.0.10</version>
-		</dependency> -->
-		
 		<!-- Tema do Bootstrap -->
     	<dependency>
     		<groupId>org.primefaces.themes</groupId>
@@ -47,13 +40,6 @@
     		<scope>compile</scope>
     	</dependency>
 		
-		<!-- <dependency>
-		    <groupId>javax.enterprise</groupId>
-		    <artifactId>cdi-api</artifactId>
-		    <version>1.2</version>
-		    <scope>provided</scope>
-		</dependency> -->
-
 		<!-- Weld (Implementação do CDI - V1.2) -->
 		<dependency>
 			<groupId>org.jboss.weld.servlet</groupId>
@@ -67,14 +53,6 @@
 			<version>1.2.3.Final</version>
 			<scope>compile</scope>
 		</dependency>
-		
-		<!-- JSF 2.2 -->
-		<!-- <dependency>
-		 	<groupId>javax.faces</groupId>
-		  	<artifactId>javax.faces-api</artifactId>
-		  	<version>2.2</version>
-		  	<scope>provided</scope>
-		</dependency> -->
 		
 		<!-- Mojarra (implementação do JSF 2.2) -->
 		<dependency>
@@ -100,18 +78,6 @@
 			<scope>provided</scope>
 		</dependency>
 		
-		<!-- Selenium WebDriver for Java
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version>2.53.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-server</artifactId>
-			<version>2.53.0</version>
-		</dependency> -->
-		
 		<!-- JUnit -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -127,14 +93,12 @@
 			<version>2.5</version>
 			<scope>compile</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
 			<version>2.5</version>
 			<scope>compile</scope>
 		</dependency>
-		
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-jcl</artifactId>
@@ -186,7 +150,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.38</version>
+			<version>5.1.41</version>
 			<scope>compile</scope>
 		</dependency>
 		
@@ -251,8 +215,14 @@
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
-			<version>5.1.2</version>
+			<version>6.4.0</version>
 			<scope>compile</scope>
+		</dependency>
+		<dependency>
+		    <groupId>net.sf.jasperreports</groupId>
+		    <artifactId>jasperreports-fonts</artifactId>
+		    <version>6.0.0</version>
+		    <scope>compile</scope>
 		</dependency>
 		
 		<!-- Usado para geração de arquivos Excel -->
@@ -262,7 +232,6 @@
 		    <version>3.11</version>
 		    <scope>compile</scope>
 		</dependency>
-		
 	</dependencies>
 
 	<!-- Maven Compile -->
