@@ -54,7 +54,7 @@ public class Produtos implements Serializable {
 	
 	@SuppressWarnings("unchecked")
 	public List<Produto> filtrados(ProdutoFilter filtro) {
-		Session session = manager.unwrap(Session.class);
+		Session session = (Session) manager;
 		Criteria criteria = session.createCriteria(Produto.class);
 		
 		if (StringUtils.isNotBlank(filtro.getSku())) {

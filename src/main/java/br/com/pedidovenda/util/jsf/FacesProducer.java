@@ -20,13 +20,6 @@ public class FacesProducer {
 		return getFacesContext().getExternalContext();
 	}
 	
-	// Erro para novas versões do JavaEE
-/*	@Produces
-	@RequestScoped
-	public HttpServletRequest getHttpServletRequest() {
-		return ((HttpServletRequest) getExternalContext().getRequest());	
-	}*/
-	
 	@Produces
 	@RequestScoped
 	public HttpServletResponse getHttpServletResponse() {
