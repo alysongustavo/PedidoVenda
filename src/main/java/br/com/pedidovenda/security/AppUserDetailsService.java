@@ -16,15 +16,19 @@ import br.com.pedidovenda.repository.Usuarios;
 import br.com.pedidovenda.util.cdi.CDIServiceLocator;
 
 public class AppUserDetailsService implements UserDetailsService {
+	
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		Usuarios usuarios = CDIServiceLocator.getBean(Usuarios.class);
 		Usuario usuario = usuarios.porEmail(email);
+		
 		UsuarioSistema user = null;
 		
 		if (usuario != null) {
 			user = new UsuarioSistema(usuario, getGrupos(usuario));
+		} else {
+			throw new UsernameNotFoundException("Usuário não encontrado.");
 		}
 		
 		return user;
@@ -34,7 +38,7 @@ public class AppUserDetailsService implements UserDetailsService {
 		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 		
 		for (Grupo grupo : usuario.getGrupos()) {
-			authorities.add(new SimpleGrantedAuthority(grupo.getNome().toUpperCase()));
+			authorities.add(new SimpleGrantedAuthority("ROLE_" + grupo.getNome().toUpperCase()));
 		}
 		
 		

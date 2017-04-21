@@ -48,7 +48,7 @@ public class GraficoPedidosCriadosBean {
 	}
 
 	private void adicionarSerie(String rotulo, Usuario criadoPor) {
-		Map<Date, BigDecimal> valoresPorData = pedidos.valoresTotaisPorData(15, criadoPor);
+		Map<Date, BigDecimal> valoresPorData = pedidos.valoresTotaisPorData(30, criadoPor);
 		
 		ChartSeries series = new ChartSeries(rotulo);
 		
