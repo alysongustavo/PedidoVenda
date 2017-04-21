@@ -7,14 +7,14 @@
 		</Console>
 		
 		<RollingFile name="arquivo"
-				fileName="${sys:catalina.home}/logs/pedido-venda-day.log"
-				filePattern="${sys:catalina.home}/logs/pedido-venda-day-%d{yyyy-MM-dd}-%i.log">
+				fileName="${sys:catalina.home}/logs/pedido-venda.log"
+				filePattern="${sys:catalina.home}/logs/pedido-venda-%d{yyyy-MM-dd}-%i.log">
 			
 			<PatternLayout pattern="%d %-5p [%c] %m%n" />
 			
  			<Policies>
 				<TimeBasedTriggeringPolicy />
-				
+				<SizeBasedTriggeringPolicy size="1 MB" />
 			</Policies>
 		</RollingFile>
 	</Appenders>
@@ -22,7 +22,7 @@
 	<Loggers>
 		<Root level="info">
 			<AppenderRef ref="console" />
-			<AppenderRef ref="arquivo" />
+        	<AppenderRef ref="arquivo" />
 		</Root>
 	</Loggers>
 </Configuration>
